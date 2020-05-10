@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link href="styles.css" rel="stylesheet" />
+    </head>
+    <body onscroll="changeNameColor()">
+        <div class="shapes" id="square"></div>
+        <div class="shapes" id="rectangle"></div>
+        <div class="shapes" id="circle"></div>
+        <span id="name">Atul</span>
+    </body>
+    <script>
+	//if it is possible to change setinterval to setTimeout for doing repeatative work. Memory loss problem has resolved 
+	var intervalid;
+	var intervalarr =[];
+        function changeNameColor() {
+            var colorSet = [
+                "#ff0000",
+                "#ff8080",
+                "#ff9999",
+                "#ffffcc",
+                "#ccffcc",
+                "#66ff99",
+                "#00cc99",
+                "#006600",
+                "#0000ff"
+            ];
+			if(window.scrollY <= 10){
+			for(var j=0;j<intervalarr.length;j++){
+				clearInterval(intervalarr[j]);
+			}	
+			}
+            if (window.scrollY > 10) {
+			for(var j=0;j<intervalarr.length;j++){
+				clearInterval(intervalarr[j]);
+				intervalarr = [];
+			}
+			//for(var i=10;i<1600;i++){
+				//if(window.scrollY===i){
+				intervalid=setInterval(function() {
+                    var randomIndex = Math.floor(Math.random() * 10);
+                    document.getElementById("name").style.color =
+                        colorSet[randomIndex];
+                }, 1000);
+				intervalarr.push(intervalid);
+				//}
+			//}
+             console.log(intervalarr);   
+            } else {
+                document.getElementById("name").style.color = "#FFFFFF";
+            }
+			
+        }
+
+        // not knowing why setIntervalShowing showing different behavior, this can be solved, due to time issue left in this stage
+    </script>
+</html>
